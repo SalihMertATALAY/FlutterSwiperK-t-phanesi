@@ -14,7 +14,7 @@ class SwiperOrnek extends StatelessWidget {
       appBar: AppBar(
         title: Text("Swiper Örnek Projesi"),
       ),
-      body: SwiperFonksiyonu(),
+      body: SwiperTinderFonksiyonu(),
     );
   }
   List<String> resimAdresleri = [
@@ -66,6 +66,112 @@ class SwiperOrnek extends StatelessWidget {
           control: new SwiperControl(),
           // Varsayılan item geçişi
           layout: SwiperLayout.DEFAULT,
+        ),
+      ),
+    );
+  }
+
+  SwiperStackFonksiyonu(){
+    // Fonksiyonun merkezde olmasını sağlar
+    return Center(
+      // Swiperın toplam alanı
+      child: Container(
+        // Swiper'ın yüksekliği
+        height: 200,
+        // Swiper
+        child: new Swiper(
+          // listenin elemanları
+          itemBuilder: (BuildContext context, int index) {
+            // Anlık url
+            String anlikResimAdresi = resimAdresleri[index];
+            // elmanın swiper'ın ne tarafında olacağı 
+            return Align(
+              // merkezde bulunacak
+              alignment: Alignment.center,
+              // elemanın bulunacağı alan
+              child: Container(
+                // elemanın yüksekliği
+                height: 200,
+                // Dekorasyon bölümü
+                decoration: BoxDecoration(
+                  // köşe yumuşatması
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  // resim alanı 
+                    image: DecorationImage(
+                      // bağlantı resmi (url kullanılır)
+                        image: NetworkImage(anlikResimAdresi),
+                        // çözünürlüğü bozulmadan yakınlaştırır.
+                        fit: BoxFit.cover)),
+              ),
+            );
+          },
+           // elemanın genişliği
+          itemWidth: 250,
+          // Toplam elman sayısı
+          itemCount: resimAdresleri.length,
+          // Resim altında bulunan nokta kısımları burada bulunur. Bunları özelleştirebilirsiniz.
+          pagination: new SwiperPagination(),
+          // Sağ ve sol tarafında bulunan oklardır. Bunları özelleştirebilirsiniz.
+          control: new SwiperControl(),
+          // Varsayılan eleman geçişi
+          layout: SwiperLayout.STACK,
+          // Otomatik oynatma
+          autoplay: true,
+          // kaç milisaniye elemanın merkezde kalacağını gösterir
+          autoplayDelay: 2000,
+          // geçiişin kaç saniye olacağını gösterir.
+          duration: 1000,
+        ),
+      ),
+    );
+  }
+   SwiperTinderFonksiyonu(){
+    // Fonksiyonun merkezde olmasını sağlar
+    return Center(
+      // Swiperın toplam alanı
+      child: Container(
+        // Swiper'ın yüksekliği
+        height: 300,
+        // Swiper
+        child: new Swiper(
+          // listenin elemanları
+          itemBuilder: (BuildContext context, int index) {
+            // Anlık url
+            String anlikResimAdresi = resimAdresleri[index];
+            // elmanın swiper'ın ne tarafında olacağı 
+            return Align(
+              // merkezde bulunacak
+              alignment: Alignment.center,
+              // elemanın bulunacağı alan
+              child: Container(
+                // elemanın yüksekliği
+                height: 300,
+                // Dekorasyon bölümü
+                decoration: BoxDecoration(
+                  // köşe yumuşatması
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  // resim alanı 
+                    image: DecorationImage(
+                      // bağlantı resmi (url kullanılır)
+                        image: NetworkImage(anlikResimAdresi),
+                        // çözünürlüğü bozulmadan yakınlaştırır.
+                        fit: BoxFit.cover)),
+              ),
+            );
+          },
+          itemHeight: 300,
+           // elemanın genişliği
+          itemWidth: 350,
+          // Toplam elman sayısı
+          itemCount: resimAdresleri.length,
+          // Resim altında bulunan nokta kısımları burada bulunur. Bunları özelleştirebilirsiniz.
+          layout: SwiperLayout.TINDER,
+          // Otomatik oynatma
+          autoplay: true,
+          // kaç milisaniye elemanın merkezde kalacağını gösterir
+          autoplayDelay: 2000,
+          // geçiişin kaç saniye olacağını gösterir.
+          duration: 1000,
         ),
       ),
     );
